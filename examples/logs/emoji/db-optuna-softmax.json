@@ -1,0 +1,28 @@
+[
+    {
+        "value": Infinity,
+        "algo": "MeanShift",
+        "params": {
+            "radius": 0.14594640046148233,
+            "max_clusters": 59,
+            "max_iterations": 28,
+            "initial": 118,
+            "convergence": 1e-07,
+            "seed": 2965682339
+        },
+        "fit_time": 127.36073184013367,
+        "eval_time": 0
+    },
+    {
+        "value": 3.0663402525590064,
+        "algo": "Birch",
+        "params": {
+            "k": 51,
+            "max_branches": 138,
+            "threshold": 0.1917469013976545,
+            "max_iterations": 28
+        },
+        "fit_time": 340.2234785556793,
+        "eval_time": 268.0891909599304
+    }
+]

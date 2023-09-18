@@ -1,0 +1,3 @@
+-r deep.txt
+
+tensorflow~=2.10.1

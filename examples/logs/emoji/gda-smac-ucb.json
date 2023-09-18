@@ -1,0 +1,41 @@
+[
+    {
+        "value": -0.04052037013147908,
+        "algo": "BisectingKMeans",
+        "params": {
+            "k": 55,
+            "max_iterations": 28,
+            "min_cluster_size": 0.8563667402323335,
+            "convergence": 1e-07,
+            "seed": 1576720009
+        },
+        "fit_time": 120.32728838920593,
+        "eval_time": 17.27995204925537
+    },
+    {
+        "value": -0.1158479039101445,
+        "algo": "MeanShift",
+        "params": {
+            "radius": 0.16625241800881924,
+            "max_clusters": 59,
+            "max_iterations": 28,
+            "initial": 118,
+            "convergence": 1e-07,
+            "seed": 3413608272
+        },
+        "fit_time": 121.9818651676178,
+        "eval_time": 296.8885488510132
+    },
+    {
+        "value": -0.12964600097907122,
+        "algo": "Birch",
+        "params": {
+            "k": 51,
+            "max_branches": 105,
+            "threshold": 0.38858422357589006,
+            "max_iterations": 28
+        },
+        "fit_time": 263.1507248878479,
+        "eval_time": 230.87683415412903
+    }
+]

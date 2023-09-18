@@ -1,0 +1,222 @@
+[
+  {
+    "value": 0.033612313770229156,
+    "algo": "KMeans",
+    "params": {
+      "k": 8,
+      "max_iterations": 5,
+      "init_steps": 2,
+      "convergence": 1e-07,
+      "seed": 3425936275
+    },
+    "fit_time": 52.17005753517151,
+    "eval_time": 41.327882528305054
+  },
+  {
+    "value": 0.011072085961237255,
+    "algo": "BisectingKMeans",
+    "params": {
+      "k": 12,
+      "max_iterations": 5,
+      "min_cluster_size": 0.3136415180563927,
+      "convergence": 1e-07,
+      "seed": 1803579885
+    },
+    "fit_time": 28.96809959411621,
+    "eval_time": 28.35930824279785
+  },
+  {
+    "value": 0.012055760486576778,
+    "algo": "Birch",
+    "params": {
+      "k": 5,
+      "max_branches": 16,
+      "threshold": 0.21688060835003853,
+      "max_iterations": 5
+    },
+    "fit_time": 75.26269125938416,
+    "eval_time": 28.632283926010132
+  },
+  {
+    "value": Infinity,
+    "algo": "MeanShift",
+    "params": {
+      "radius": 0.4718275545874238,
+      "max_clusters": 13,
+      "max_iterations": 5,
+      "initial": 26,
+      "convergence": 1e-07,
+      "seed": 2209669695
+    },
+    "fit_time": 27.363821506500244,
+    "eval_time": 0
+  },
+  {
+    "value": 0.011922633183543864,
+    "algo": "KMeans",
+    "params": {
+      "k": 5,
+      "max_iterations": 5,
+      "init_steps": 2,
+      "convergence": 1e-07,
+      "seed": 3587199583
+    },
+    "fit_time": 51.721577644348145,
+    "eval_time": 28.633487701416016
+  },
+  {
+    "value": 0.002875580662199176,
+    "algo": "BisectingKMeans",
+    "params": {
+      "k": 3,
+      "max_iterations": 5,
+      "min_cluster_size": 0.9356484228634261,
+      "convergence": 1e-07,
+      "seed": 1237515583
+    },
+    "fit_time": 24.068914651870728,
+    "eval_time": 16.163423538208008
+  },
+  {
+    "value": 0.04264664803102662,
+    "algo": "Birch",
+    "params": {
+      "k": 11,
+      "max_branches": 12,
+      "threshold": 0.30522336029991526,
+      "max_iterations": 5
+    },
+    "fit_time": 75.38714742660522,
+    "eval_time": 53.230974197387695
+  },
+  {
+    "value": Infinity,
+    "algo": "MeanShift",
+    "params": {
+      "radius": 0.15143810705750957,
+      "max_clusters": 13,
+      "max_iterations": 5,
+      "initial": 26,
+      "convergence": 1e-07,
+      "seed": 4060645949
+    },
+    "fit_time": 11.483506917953491,
+    "eval_time": 0
+  },
+  {
+    "value": 0.02583684406731065,
+    "algo": "KMeans",
+    "params": {
+      "k": 9,
+      "max_iterations": 5,
+      "init_steps": 2,
+      "convergence": 1e-07,
+      "seed": 1398743383
+    },
+    "fit_time": 52.00144672393799,
+    "eval_time": 44.877482652664185
+  },
+  {
+    "value": 0.005500016121025024,
+    "algo": "BisectingKMeans",
+    "params": {
+      "k": 8,
+      "max_iterations": 5,
+      "min_cluster_size": 0.505,
+      "convergence": 1e-07,
+      "seed": 1149614155
+    },
+    "fit_time": 27.487009525299072,
+    "eval_time": 19.936381340026855
+  },
+  {
+    "value": 0.002779854341231786,
+    "algo": "Birch",
+    "params": {
+      "k": 2,
+      "max_branches": 18,
+      "threshold": 0.036219660869507786,
+      "max_iterations": 5
+    },
+    "fit_time": 75.2740957736969,
+    "eval_time": 16.189932584762573
+  },
+  {
+    "value": 0.02510346649911902,
+    "algo": "MeanShift",
+    "params": {
+      "radius": 0.4440698969908044,
+      "max_clusters": 13,
+      "max_iterations": 5,
+      "initial": 26,
+      "convergence": 1e-07,
+      "seed": 628947051
+    },
+    "fit_time": 23.50267195701599,
+    "eval_time": 16.167404651641846
+  },
+  {
+    "value": Infinity,
+    "algo": "MeanShift",
+    "params": {
+      "radius": 0.305005,
+      "max_clusters": 13,
+      "max_iterations": 5,
+      "initial": 26,
+      "convergence": 1e-07,
+      "seed": 2636414296
+    },
+    "fit_time": 27.78837275505066,
+    "eval_time": 0
+  },
+  {
+    "value": 0.023107083953956064,
+    "algo": "Birch",
+    "params": {
+      "k": 8,
+      "max_branches": 16,
+      "threshold": 0.5,
+      "max_iterations": 5
+    },
+    "fit_time": 75.99632287025452,
+    "eval_time": 40.81556034088135
+  },
+  {
+    "value": 0.008369098064035865,
+    "algo": "KMeans",
+    "params": {
+      "k": 4,
+      "max_iterations": 5,
+      "init_steps": 2,
+      "convergence": 1e-07,
+      "seed": 2925228130
+    },
+    "fit_time": 51.927268743515015,
+    "eval_time": 24.41116690635681
+  },
+  {
+    "value": 0.007441510005052423,
+    "algo": "BisectingKMeans",
+    "params": {
+      "k": 4,
+      "max_iterations": 5,
+      "min_cluster_size": 0.10169770270877224,
+      "convergence": 1e-07,
+      "seed": 3320338508
+    },
+    "fit_time": 27.983227968215942,
+    "eval_time": 24.023205280303955
+  },
+  {
+    "value": 0.015870934750588168,
+    "algo": "Birch",
+    "params": {
+      "k": 6,
+      "max_branches": 28,
+      "threshold": 0.15781404458960746,
+      "max_iterations": 5
+    },
+    "fit_time": 75.1385006904602,
+    "eval_time": 32.61682915687561
+  }
+]
