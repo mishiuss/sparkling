@@ -88,9 +88,9 @@ class ImageEmb(DeepEmb, ABC):
     Also configures environment on each worker for correct communication with file storage
     """
 
-    def __init__(self, name: str, orig_dim: int, reduce_dim: bool, **kwargs):
+    def __init__(self, name: str, model_name: str, orig_dim: int, reduce_dim: bool, **kwargs):
         fs_builder = _resolve_fs(SparkContext.getOrCreate())
-        super().__init__(name, orig_dim, reduce_dim, fs_builder=fs_builder, **kwargs)
+        super().__init__(name, model_name, orig_dim, reduce_dim, fs_builder=fs_builder, **kwargs)
 
     @staticmethod
     @abstractmethod

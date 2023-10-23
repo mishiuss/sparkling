@@ -92,6 +92,8 @@ class KMeans(
   private def initParallel(data: RDD[Row], dist: MultiDistance): Array[Row] = {
     val s = seed
     val sample = data.takeSample(withReplacement = false, 1, s)
+    require(sample.nonEmpty, s"No samples available from data")
+
     val centroids = ArrayBuffer[Row]()
     var newCentroids = Array(sample.head)
     centroids ++= newCentroids
@@ -100,15 +102,17 @@ class KMeans(
     var costs = data.map { _ => Double.PositiveInfinity }
     var step = 0
     while (step < initSteps) {
-      val broadcastCentroids = data.context.broadcast(newCentroids)
-      broadcasts += broadcastCentroids
+      val broadcastNewCentroids = data.context.broadcast(newCentroids)
+      broadcasts += broadcastNewCentroids
       val oldCosts = costs
       costs = data.zip(oldCosts).map { case (obj, cost) =>
-        min(cost, broadcastCentroids.value.map { dist(obj, _) }.min)
+        val newCentroidsValue = broadcastNewCentroids.value
+        if (newCentroidsValue.isEmpty) cost
+        else min(newCentroidsValue.map { dist(obj, _) }.min, cost)
       }.persist(MEMORY_AND_DISK)
       val sumCosts = costs.sum()
 
-      broadcastCentroids.unpersist()
+      broadcastNewCentroids.unpersist()
       oldCosts.unpersist()
 
       newCentroids = data.zip(costs).mapPartitionsWithIndex { (index, pointCosts) =>

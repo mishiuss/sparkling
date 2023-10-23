@@ -6,7 +6,6 @@ if __name__ == '__main__':
     # There are some downloaded datasets in repository. You can choose one of the following:
     # 'abalone', 'blocks', 'character', 'iris', 'mfeature', 'visualizing_soil',
     # 'volcanoes-d4', 'wall-robot-navigation', 'wine-quality-white'.
-    #
     DATA_ROOT, DATASET = 'heaven/src/test/data', 'abalone'
 
     # Enable extra logging (default is SparklingLogLevel.EXCERPT)
@@ -65,8 +64,8 @@ if __name__ == '__main__':
     print(f'RAND: {External.RAND.evaluate(optimal.label_sdf)}')
 
     # You can also evaluate any internal measure for SparklingDF
-    print(f'DAVIES_BOULDIN: {Internal.DAVIES_BOULDIN.evaluate(optimal.label_sdf)}')
-    print(f'DUNN_APPROX: {Internal.DUNN_APPROX.evaluate(optimal.label_sdf)}')
+    print(f'SILHOUETTE_APPROX: {Internal.SILHOUETTE_APPROX.evaluate(optimal.label_sdf)}')
+    print(f'GD41_APPROX: {Internal.GD41_APPROX.evaluate(optimal.label_sdf)}')
 
     # You can save optimisation history (invoked clustering algorithms with hyperparameters) into json format:
     with open(f'examples/logs/{DATASET}-local.json', 'w') as fp:

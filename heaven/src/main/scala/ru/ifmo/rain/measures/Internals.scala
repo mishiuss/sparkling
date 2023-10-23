@@ -33,9 +33,7 @@ object Internals {
       case "db"    => db(_, _)
       case "db*"   => dbAlter(_, _)
       case "dunn"  => dunn(_, _)
-      case "dunn*" => dunnApprox(_, _)
       case "gd31"  => gd31(_, _)
-      case "gd31*" => gd31Approx(_, _)
       case "gd41"  => gd41(_, _)
       case "gd41*" => gd41Approx(_, _)
       case "gd51"  => gd51(_, _)
@@ -129,28 +127,26 @@ object Internals {
   private def dunn(df: DataFrame, clusters: Array[ClusterInfo])(implicit dist: MultiDistance): Double =
     generalisedDunn(clusters, dunnDiam1(_), dunnDist1(_, _))
 
-  /**
-   * Uses the $$\Delta1$$ approximation, where $$\Delta1$$ is calculated as the distance from the point farthest from
-   * the centroid to the point farthest from it. This allows for a significant reduction in computational complexity.
-   */
-  private def dunnApprox(df: DataFrame, clusters: Array[ClusterInfo])(implicit dist: MultiDistance): Double =
-    generalisedDunn(clusters, dunnDiam1Approx(_), dunnDist1(_, _))
-
   private def gd31(df: DataFrame, clusters: Array[ClusterInfo])(implicit dist: MultiDistance): Double =
     generalisedDunn(clusters, dunnDiam1(_), dunnDist3(_, _))
-
-  private def gd31Approx(df: DataFrame, clusters: Array[ClusterInfo])(implicit dist: MultiDistance): Double =
-    generalisedDunn(clusters, dunnDiam1Approx(_), dunnDist3(_, _))
 
   private def gd41(df: DataFrame, clusters: Array[ClusterInfo])(implicit dist: MultiDistance): Double =
     generalisedDunn(clusters, dunnDiam1(_), dunnDist4(_, _))
 
+  /**
+   * Uses the $$\Delta1$$ approximation, where $$\Delta1$$ is calculated as the distance from the point farthest from
+   * the centroid to the point farthest from it. This allows for a significant reduction in computational complexity.
+   */
   private def gd41Approx(df: DataFrame, clusters: Array[ClusterInfo])(implicit dist: MultiDistance): Double =
     generalisedDunn(clusters, dunnDiam1Approx(_), dunnDist4(_, _))
 
   private def gd51(df: DataFrame, clusters: Array[ClusterInfo])(implicit dist: MultiDistance): Double =
     generalisedDunn(clusters, dunnDiam1(_), dunnDist5(_, _))
 
+  /**
+   * Uses the $$\Delta1$$ approximation, where $$\Delta1$$ is calculated as the distance from the point farthest from
+   * the centroid to the point farthest from it. This allows for a significant reduction in computational complexity.
+   */
   private def gd51Approx(df: DataFrame, clusters: Array[ClusterInfo])(implicit dist: MultiDistance): Double =
     generalisedDunn(clusters, dunnDiam1Approx(_), dunnDist5(_, _))
 

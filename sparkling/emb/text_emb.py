@@ -26,8 +26,8 @@ class TextBatch:
 class TextEmb(DeepEmb, ABC):
     """ Basic marker for text modality preprocessors """
 
-    def __init__(self, name: str, orig_dim: int, reduce_dim: bool, **kwargs):
-        super().__init__(name, orig_dim, reduce_dim, **kwargs)
+    def __init__(self, name: str, model_name: str, orig_dim: int, reduce_dim: bool, **kwargs):
+        super().__init__(name, model_name, orig_dim, reduce_dim, **kwargs)
 
     @staticmethod
     @abstractmethod

@@ -16,7 +16,7 @@ class SparklingLogLevel(IntEnum):
         logger.setLevel('INFO')
         handler = logging.StreamHandler(sys.stdout)
         handler.setLevel(logging.INFO)
-        handler.setFormatter(logging.Formatter('|SPARKLING|>  %(message)s'))
+        handler.setFormatter(logging.Formatter('[SPARKLING] %(message)s'))
         logger.addHandler(handler)
         return logger
 
@@ -24,6 +24,17 @@ class SparklingLogLevel(IntEnum):
 class SparklingLogger:
     level = SparklingLogLevel.EXCERPT
     logger = SparklingLogLevel.configure()
+
+    @staticmethod
+    def _format(measured):
+        consumed = measured * 1000
+        millis = int(consumed % 1000)
+        consumed /= 1000
+        seconds = int(consumed % 60)
+        consumed /= 60
+        minutes = int(consumed % 60)
+        hours = int(consumed // 60)
+        return '{:02d}:{:02d}:{:02d}.{:03d}'.format(hours, minutes, seconds, millis)
 
     @staticmethod
     def log(message):
@@ -38,9 +49,9 @@ class SparklingLogger:
 
     @staticmethod
     def finish_cvi_predictor(t_start, recommendation, meta_features):
-        message, consumed = '', time.time() - t_start
+        message, consumed = '', SparklingLogger._format(time.time() - t_start)
         if SparklingLogger.level >= SparklingLogLevel.EXCERPT:
-            message += f'CVI predictor recommended {recommendation} in {consumed}s'
+            message += f'CVI predictor recommended {recommendation} in {consumed}'
         if SparklingLogger.level >= SparklingLogLevel.VERBOSE:
             message += f'. Meta-features: {meta_features}'
         SparklingLogger.log(message)
@@ -53,9 +64,9 @@ class SparklingLogger:
 
     @staticmethod
     def finish_preprocessing(t_start):
-        consumed = time.time() - t_start
+        consumed = SparklingLogger._format(time.time() - t_start)
         if SparklingLogger.level >= SparklingLogLevel.EXCERPT:
-            SparklingLogger.log(f'Finished preprocessing in {consumed}s')
+            SparklingLogger.log(f'Finished preprocessing in {consumed}')
 
     @staticmethod
     def start_stage(stage):
@@ -65,9 +76,9 @@ class SparklingLogger:
 
     @staticmethod
     def finish_stage(t_start, stage, updates):
-        message, consumed = '', time.time() - t_start
+        message, consumed = '', SparklingLogger._format(time.time() - t_start)
         if SparklingLogger.level >= SparklingLogLevel.INFO:
-            message += f'+ Finished stage {stage} in {consumed}s'
+            message += f'+ Finished stage {stage} in {consumed}'
         if SparklingLogger.level >= SparklingLogLevel.VERBOSE:
             message += f'. Monad state updates: {updates}'
         SparklingLogger.log(message)
@@ -87,9 +98,9 @@ class SparklingLogger:
 
     @staticmethod
     def finish_pivot(t_start, measure, value):
-        message, consumed = '', time.time() - t_start
+        message, consumed = '', SparklingLogger._format(time.time() - t_start)
         if SparklingLogger.level >= SparklingLogLevel.INFO:
-            message += f'Pivot value for measure {measure.name} estimated in {consumed}s'
+            message += f'Pivot value for measure {measure.name} estimated in {consumed}'
         if SparklingLogger.level >= SparklingLogLevel.VERBOSE:
             message += f'. Value: {value}'
         SparklingLogger.log(message)
@@ -97,15 +108,15 @@ class SparklingLogger:
     @staticmethod
     def start_arm(arm, arm_attempt, all_attempts, algo_name):
         if SparklingLogger.level >= SparklingLogLevel.INFO:
-            SparklingLogger.log(f'Started arm #{arm} [{algo_name}], attempt {arm_attempt}/{all_attempts}')
+            SparklingLogger.log(f'Started arm #{arm} [{algo_name}], attempt {arm_attempt} of {all_attempts}')
         return time.time()
 
     @staticmethod
-    def finish_arm(consumed, arm, arm_attempt, all_attempts, algo_name, reward):
+    def finish_arm(measured, arm, arm_attempt, all_attempts, algo_name, reward):
         if SparklingLogger.level >= SparklingLogLevel.INFO:
             SparklingLogger.log(
-                f'Finished arm #{arm} [{algo_name}] in {consumed} '
-                f'with reward {reward}, attempt {arm_attempt}/{all_attempts}'
+                f'Finished arm #{arm} [{algo_name}] in {SparklingLogger._format(measured)} '
+                f'with reward {reward}, attempt {arm_attempt} of {all_attempts}'
             )
         return time.time()
 
@@ -117,9 +128,9 @@ class SparklingLogger:
 
     @staticmethod
     def finish_algo(algo_start, algo):
-        message, consumed = '', time.time() - algo_start
+        message, consumed = '', SparklingLogger._format(time.time() - algo_start)
         if SparklingLogger.level >= SparklingLogLevel.EXCERPT:
-            message = f'Finished {algo.algo_name} in {consumed}s'
+            message = f'Finished {algo.algo_name} in {consumed}'
         if SparklingLogger.level >= SparklingLogLevel.INFO:
             message += f' with {algo.params}'
         SparklingLogger.log(message)
@@ -133,14 +144,14 @@ class SparklingLogger:
 
     @staticmethod
     def finish_measure(m_start, measure, value):
-        consumed = time.time() - m_start
+        consumed = SparklingLogger._format(time.time() - m_start)
         if SparklingLogger.level >= SparklingLogLevel.EXCERPT:
-            SparklingLogger.log(f'Finished {measure.name} evaluation in {consumed}s, value: {value}')
+            SparklingLogger.log(f'Finished {measure.name} evaluation in {consumed}, value: {value}')
         return consumed
 
     @staticmethod
     def failed_algo(algo_start, algo):
-        message, consumed = '', time.time() - algo_start
+        message, consumed = '', SparklingLogger._format(time.time() - algo_start)
         if SparklingLogger.level >= SparklingLogLevel.EXCERPT:
             message += f'{algo.algo_name} failed in {consumed}s'
         if SparklingLogger.level >= SparklingLogLevel.INFO:

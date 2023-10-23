@@ -28,24 +28,26 @@ pip install -r requirements/pytorch.txt
 ### Launch via python interpreter from conda environment
 
 Make sure terminal is opened in the root of Sparkling project and 
-correct conda environment (**sparkling-env** from previous step) is activated:
+correct conda environment (**sparkling-env** from previous step) is activated.
+
+Make sure to supply **PYTHONPATH** with absolute path of project's root (the 
+next examples assumes it is */home/user/sparkling*)
 
 ```bash
 # Simple script to demonstrate project's functionality
+
 # This is for python to correctly resolve paths
-cp examples/local/tabular.py tabular.py
-python tabular.py
+PYTHONPATH=/home/user/sparkling python examples/local/tabular.py
+
 # You can view full history of invoked algorithms
 cat examples/logs/abalone-local.json
 
 # Example of processing multimodal dataframe with text modality
-cp examples/local/text.py text.py
-python text.py
+PYTHONPATH=/home/user/sparkling python examples/local/text.py
 cat examples/logs/popular-quotes-local.json
 
 # Example of processing images dataframe
-cp examples/local/image.py image.py
-python image.py
+PYTHONPATH=/home/user/sparkling examples/local/image.py
 cat examples/logs/sports-celebrity-local.json
 ```
 

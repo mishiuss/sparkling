@@ -31,22 +31,24 @@ pip install -r requirements/pytorch.txt
 Убедитесь, что терминал открыт в корневой папке проекта Sparkling, а также что 
 работает нужная среда conda (**sparkling-env** из предыдущего шага).
 
+Укажите в переменной **PYTHONPATH** абсолютный путь корня проекта (в следующих
+примерах подразумевается */home/user/sparkling*)
+
 ```bash
 # Simple script to demonstrate project's functionality
+
 # This is for python to correctly resolve paths
-cp examples/local/tabular.py tabular.py
-python tabular.py
+PYTHONPATH=/home/user/sparkling python examples/local/tabular.py
+
 # You can view full history of invoked algorithms
 cat examples/logs/abalone-local.json
 
 # Example of processing multimodal dataframe with text modality
-cp examples/local/text.py text.py
-python text.py
+PYTHONPATH=/home/user/sparkling python examples/local/text.py
 cat examples/logs/popular-quotes-local.json
 
 # Example of processing images dataframe
-cp examples/local/image.py image.py
-python image.py
+PYTHONPATH=/home/user/sparkling examples/local/image.py
 cat examples/logs/sports-celebrity-local.json
 ```
 
