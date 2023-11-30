@@ -48,7 +48,7 @@ PYTHONPATH=/home/user/sparkling python examples/local/text.py
 cat examples/logs/popular-quotes-local.json
 
 # Example of processing images dataframe
-PYTHONPATH=/home/user/sparkling examples/local/image.py
+PYTHONPATH=/home/user/sparkling python examples/local/image.py
 cat examples/logs/sports-celebrity-local.json
 ```
 
@@ -183,3 +183,28 @@ spark.executorEnv.ARROW_PRE_0_15_IPC_FORMAT=1
 ```bash
 examples/cloud/multimodal.sh diffusion softmax optuna silhouette_approx 1500
 ```
+
+### Возможные проблемы
+
+#### RpcEnv already stopped
+
+Иногда вызов *SparkSession.stop()* в конце скрипта может выбрасывать следующее исключение:
+```
+ERROR TransportRequestHandler: Error while invoking RpcHandler#receive() for one-way message.
+org.apache.spark.rpc.RpcEnvStoppedException: RpcEnv already stopped.
+```
+Это баг Apache Spark'а для локального мастера ([подробнее об ошибке](https://issues.apache.org/jira/browse/SPARK-31922)).
+Не влияет на функциональность *Sparkling*, то есть скрипты корректно исполняются до момента явной остановки SparkSession.
+
+#### Failed to load implementation from ...
+
+Предупреждение, что в окружении отсутствуют нативные библиотеки для ускорения вычислений, например:
+```
+WARN LAPACK: Failed to load implementation from: com.github.fommil.netlib.NativeRefLAPACK
+```
+*Sparkling* не требует наличия в окружении таких библиотек, но пользователь может при желании самостоятельно установить 
+дополнительные компоненты, следуя [официальному руководству](https://spark.apache.org/docs/latest/ml-linalg-guide.html#install-native-linear-algebra-libraries).
+
+#### Some weights of the model checkpoint at ... were not used when initializing ...
+
+Не ошибка, стандартное предупреждение, см. [обсуждение](https://github.com/huggingface/transformers/issues/5421).

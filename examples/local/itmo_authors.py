@@ -10,7 +10,7 @@ DATASET_NAME = 'itmo-authors'
 
 
 def get_cumulative(history):
-    values = [{'val': run['value'], 'algo': run['algo']} for run in history]
+    values = [{'val': run.value, 'algo': run.algo} for run in history]
     history_df = pd.DataFrame(values)
     history_df.replace(np.inf, np.nan, inplace=True)
     history_df.replace(-np.inf, np.nan, inplace=True)
@@ -59,10 +59,10 @@ if __name__ == '__main__':
 
     optimiser = Sparkling(sparkling_df, measure=Internal.SILHOUETTE_APPROX)
     result = optimiser.run(time_limit=90)
-
     result.label_sdf.df.show()
-    opt_history = optimiser.history_json()
 
     with open(f'examples/logs/itmo-authors-local.json', 'w') as fp:
-        fp.write(opt_history)
-    plot_history(opt_history)
+        fp.write(optimiser.history_json())
+    plot_history(optimiser.history())
+
+    sc.stop()

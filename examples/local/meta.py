@@ -28,6 +28,8 @@ if __name__ == '__main__':
 
         optimiser = Sparkling(sparkling_df, measure=None)
 
+    sc.stop()
+
     # === visualizing_soil.csv ===
     # |SPARKLING|>  Finished preprocessing in 7.300827503204346s
     # |SPARKLING|>  CVI predictor recommended CALINSKI_HARABASZ in 90.71584367752075s

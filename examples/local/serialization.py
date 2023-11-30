@@ -49,3 +49,5 @@ if __name__ == '__main__':
         modals = json.load(modals_fp)
     sparkling_df_restored = SparklingDF.create(serialized_df, modals)
     sparkling_df_restored.df.show()
+
+    ss.stop()

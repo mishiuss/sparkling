@@ -4,3 +4,6 @@ pandas~=1.3.5
 # You can choose only one HPO framework
 optuna~=2.9.1
 smac~=1.4.0
+
+# For visualisation
+matplotlib~=3.5.3
